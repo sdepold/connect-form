@@ -122,6 +122,6 @@ exports['test urlencoded'] = function(assert){
     var body = 'thanks=felix&for=the&cool=lib';
     
     assert.response(server,
-        { url: '/', data: body, headers: headers },
-        { body: '{"thanks":"felix","for":"the","cool":"lib"}' });
+        { url: '/', method: 'POST', data: body, headers: headers },
+        { body: '{"thanks":"felix","for":"the","cool":"lib"}{}' });
 };

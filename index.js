@@ -13,7 +13,7 @@ var utils = require('connect/utils'),
     formidable = require('./support/formidable');
 
 /**
- * Setup multipart with the given `options`.
+ * Setup form with the given `options`.
  *
  * Options:
  *
@@ -26,12 +26,10 @@ var utils = require('connect/utils'),
  * @api public
  */
 
-// TODO: urlencoded too
-
-module.exports = function multipart(options){
+module.exports = function(options){
     options = options || {};
     return function(req, res, next){
-        if (multipartRequest(req)) {
+        if (formRequest(req)) {
             var form = req.form = new formidable.IncomingForm;
             utils.merge(form, options);
             form.onComplete = function(){};
@@ -44,15 +42,16 @@ module.exports = function multipart(options){
 };
 
 /**
- * Check if `req` is a multipart request.
+ * Check if `req` is a valid form request.
  *
  * @param {IncomingMessage} req
  * @return {Boolean}
  * @api private
  */
 
-function multipartRequest(req){
+function formRequest(req){
     return (req.method === 'POST'
         || req.method === 'PUT')
-        && req.headers['content-type'].indexOf('multipart/form-data') >= 0;
+        && (req.headers['content-type'].indexOf('multipart/form-data') >= 0
+        ||  req.headers['content-type'].indexOf('urlencoded') >= 0);
 }
