@@ -113,3 +113,15 @@ exports['test multipart files'] = function(assert){
             assert.ok(res.body.indexOf('{"path":"/tmp') >= 0, 'Test file path');
         });
 };
+
+exports['test urlencoded'] = function(assert){
+    var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    
+    var body = 'thanks=felix&for=the&cool=lib';
+    
+    assert.response(server,
+        { url: '/', data: body, headers: headers },
+        { body: '{"thanks":"felix","for":"the","cool":"lib"}' });
+};
