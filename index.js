@@ -21,6 +21,30 @@ var utils = require('connect/utils'),
  *   - `uploadDir`       Directory to save uploads. Defaults to "/tmp"
  *   - `keepExtensions`  Include original extensions. Defaults to `false`
  *
+ * Examples:
+ *
+ *      var server = connect.createServer(
+ *             multipart({ keepExtensions: true }),
+ *             function(req, res, next){
+ *         	    // Form was submitted
+ *                 if (req.form) {
+ *         	        // Do something when parsing is finished
+ *         	        // and respond, or respond immediately
+ *         	        // and work with the files.
+ *                     req.form.onComplete = function(err, fields, files){
+ *                         res.writeHead(200, {});
+ *                         if (err) res.write(JSON.stringify(err.message));
+ *                         res.write(JSON.stringify(fields));
+ *                         res.write(JSON.stringify(files));
+ *                         res.end();
+ *                     };
+ *                 // Regular request, pass to next middleware
+ *                 } else {
+ *                     next();
+ *                 }
+ *             }
+ *         );
+ *
  * @param {Object} options
  * @return {Function}
  * @api public
