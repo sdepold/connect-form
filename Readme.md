@@ -3,7 +3,17 @@
 
 Connect Form is a multipart / urlencoded form parsing middleware utilizing [node-formidable](http://github.com/felixge/node-formidable) behind the scenes.
 
-## Examples
+## Installation
+
+Via git:
+
+    $ git clone git://github.com/visionmedia/connect-form.git ~/.node_libraries/connect-form
+
+via npm:
+
+	$ npm install connect-form
+
+## Example
 
     var form = require('connect-form');
     var server = connect.createServer(
