@@ -1,0 +1,9 @@
+{
+  "name": "connect-form",
+  "description": "urlencoded / multipart form parsing middleware for Connect",
+  "version": "0.0.1",
+  "contributors": [ 
+    { "name": "TJ Holowaychuk", "email": "tj@vision-media.ca" }
+  ],
+  "engines": { "node": ">= 0.1.98" }
+}
