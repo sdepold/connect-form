@@ -23,8 +23,9 @@ var utils = require('connect/utils'),
  *
  * Examples:
  *
+ *      var form = require('connect-form');
  *      var server = connect.createServer(
- *             multipart({ keepExtensions: true }),
+ *             form({ keepExtensions: true }),
  *             function(req, res, next){
  *         	    // Form was submitted
  *                 if (req.form) {
