@@ -26,16 +26,17 @@ var utils = require('connect/utils'),
  * @api public
  */
 
+// TODO: urlencoded too
+
 module.exports = function multipart(options){
     options = options || {};
     return function(req, res, next){
         if (multipartRequest(req)) {
-            var form = new formidable.IncomingForm;
+            var form = req.form = new formidable.IncomingForm;
             utils.merge(form, options);
-            form.parse(req, function(fields, files){
-                require('sys').puts(require('sys').inspect(fields));
-                require('sys').puts(require('sys').inspect(files));
-            });
+            form.onComplete = function(){};
+            next();
+            form.parse(req, form.onComplete);
         } else {
             next();
         }
