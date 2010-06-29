@@ -10,7 +10,7 @@
  */
 
 var utils = require('connect/utils'),
-    formidable = require('./support/formidable');
+    formidable = require('formidable');
 
 /**
  * Setup form with the given `options`.
