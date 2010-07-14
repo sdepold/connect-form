@@ -4,12 +4,12 @@
  */
 
 var connect = require('connect'),
-    multipart = require('./../index');
+    form = require('./../index');
 
 // Test server
 
 var server = connect.createServer(
-    multipart(),
+    form(),
     function(req, res, next){
         if (req.form) {
             req.form.onComplete = function(err, fields, files){
