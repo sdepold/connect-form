@@ -1,6 +1,6 @@
 
 test:
-	@./support/expresso/bin/expresso 
+	@CONNECT_ENV=test ./support/expresso/bin/expresso 
 
 index.html: index.js
 	dox --title "Connect Form" \

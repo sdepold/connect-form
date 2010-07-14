@@ -42,7 +42,7 @@ exports['test single multipart field'] = function(assert){
 
     assert.response(server,
         { url: '/' },
-        { body: 'Cannot find /' });
+        { body: 'Cannot GET /' });
     
     assert.response(server,
         { url: '/', method: 'POST', headers: headers, data: body },
