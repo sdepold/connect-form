@@ -32,13 +32,13 @@ var utils = require('connect/utils'),
  *         	        // Do something when parsing is finished
  *         	        // and respond, or respond immediately
  *         	        // and work with the files.
- *                     req.form.onComplete = function(err, fields, files){
+ *                     req.form.complete(function(err, fields, files){
  *                         res.writeHead(200, {});
  *                         if (err) res.write(JSON.stringify(err.message));
  *                         res.write(JSON.stringify(fields));
  *                         res.write(JSON.stringify(files));
  *                         res.end();
- *                     };
+ *                     });
  *                 // Regular request, pass to next middleware
  *                 } else {
  *                     next();
@@ -55,14 +55,15 @@ module.exports = function(options){
     options = options || {};
     return function(req, res, next){
         if (formRequest(req)) {
-            var form = req.form = new formidable.IncomingForm;
+            var callback = function(){},
+                form = req.form = new formidable.IncomingForm;
             utils.merge(form, options);
-            form.onComplete = function(){};
-            next();
-            form.parse(req, form.onComplete);
-        } else {
-            next();
+            form.complete = function(fn){ callback = fn; };
+            form.parse(req, function(){
+                callback.apply(this, arguments);
+            });
         }
+        next();
     };
 };
 

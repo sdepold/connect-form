@@ -12,13 +12,13 @@ var server = connect.createServer(
     form(),
     function(req, res, next){
         if (req.form) {
-            req.form.onComplete = function(err, fields, files){
+            req.form.complete(function(err, fields, files){
                 res.writeHead(200, {});
                 if (err) res.write(JSON.stringify(err.message));
                 res.write(JSON.stringify(fields));
                 res.write(JSON.stringify(files));
                 res.end();
-            };
+            });
         } else {
             next();
         }

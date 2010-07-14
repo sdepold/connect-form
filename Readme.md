@@ -24,13 +24,13 @@ via npm:
 		        // Do something when parsing is finished
 		        // and respond, or respond immediately
 		        // and work with the files.
-	            req.form.onComplete = function(err, fields, files){
+	            req.form.complete(function(err, fields, files){
 	                res.writeHead(200, {});
 	                if (err) res.write(JSON.stringify(err.message));
 	                res.write(JSON.stringify(fields));
 	                res.write(JSON.stringify(files));
 	                res.end();
-	            };
+	            });
 	        // Regular request, pass to next middleware
 	        } else {
 	            next();
