@@ -1,6 +1,7 @@
 
 test:
-	@CONNECT_ENV=test ./support/expresso/bin/expresso 
+	@CONNECT_ENV=test ./support/expresso/bin/expresso \
+		-I support/connect/lib
 
 index.html: index.js
 	dox --title "Connect Form" \
