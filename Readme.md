@@ -11,7 +11,6 @@ Via git:
 
 via npm:
 
-	$ npm install formidable
 	$ npm install connect-form
 
 ## Example

@@ -1,4 +1,10 @@
 
+0.1.1 / 2010-07-27
+==================
+
+  * Added support for bodyDecoder / connect-form to coexist
+  * Added lib/connect-form.js
+
 0.1.0 / 2010-07-14
 ==================
 
