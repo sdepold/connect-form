@@ -125,3 +125,24 @@ exports['test urlencoded'] = function(assert){
         { url: '/', method: 'POST', data: body, headers: headers },
         { body: '{"thanks":"felix","for":"the","cool":"lib"}{}' });
 };
+
+exports['test bodyDecoder'] = function(assert){
+    var server = connect.createServer(
+        connect.bodyDecoder(),
+        form(),
+        function(req, res){
+            res.writeHead(200, {});
+            res.end(JSON.stringify(req.body));
+        }
+    );
+
+    var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
+
+    var body = 'foo=bar';
+    
+    assert.response(server,
+        { url: '/', method: 'POST', data: body, headers: headers },
+        { body: '{"foo":"bar"}' });
+};
